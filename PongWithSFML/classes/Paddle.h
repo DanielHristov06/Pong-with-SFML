@@ -2,10 +2,14 @@
 #include "SFML/Graphics.hpp"
 
 class Paddle {
-private:
+protected:
 	sf::RectangleShape mShape;
 	sf::Vector2f mPosition;
-	float mSpeed = 1100.f;
+
+	const float mSpeed = 1000.f;
+	const int mWidth = 10;
+	const int mHeight = 80;
+
 	bool mMovingUp = false;
 	bool mMovingDown = false;
 

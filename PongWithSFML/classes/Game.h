@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "Ball.h"
 #include "Paddle.h"
+#include "CpuPaddle.h"
 
 class Game {
 private:
@@ -21,10 +22,13 @@ public:
 
 	Ball ball;
 	Paddle paddle;
+	CpuPaddle bot;
+
+	sf::RectangleShape line;
 
 	Game();
 
-	void handleBall(Paddle& paddle);
+	void handleBall(Paddle& paddle, CpuPaddle& bot);
 	void handlePaddle();
 
 	void Run();

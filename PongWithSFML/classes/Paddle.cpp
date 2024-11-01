@@ -1,7 +1,7 @@
 #include "Paddle.h"
 
 Paddle::Paddle(float startX, float startY) : mPosition(sf::Vector2f(startX, startY)) {
-	mShape.setSize(sf::Vector2f(10.f, 80.f));
+	mShape.setSize(sf::Vector2f(mWidth, mHeight));
 	mShape.setOrigin(sf::Vector2f(mShape.getSize().x / 2, mShape.getSize().y / 2));
 	mShape.setFillColor(sf::Color::Blue);
 	mShape.setOutlineThickness(3.f);

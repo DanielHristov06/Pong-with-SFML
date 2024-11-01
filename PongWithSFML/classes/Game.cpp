@@ -6,14 +6,18 @@ Game::Game()
 	window(sf::VideoMode(mWidth, mHeight), "Pong", sf::Style::Default),
 	ball(mWidth / 2, mHeight / 2),
 	paddle(32, mHeight / 2),
+	bot(mWidth - 32, mHeight / 2),
+	line(sf::Vector2f(2.f, (float)mHeight)),
 	bounceTimer(0.10f)
 {
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
+
+	line.setPosition(sf::Vector2f(mWidth / 2 - 1, 0.f));
 }
 
-void Game::handleBall(Paddle& paddle){
-	if (ball.getPosition().intersects(paddle.getPosition())) {
+void Game::handleBall(Paddle& paddle, CpuPaddle& bot){
+	if (ball.getPosition().intersects(paddle.getPosition()) || ball.getPosition().intersects(bot.getPosition())) {
 		if (bounceTimer < 0) {
 			ball.bounceSides();
 			bounceTimer = 0.10f;
@@ -53,15 +57,19 @@ void Game::Run(){
 			}
 		}
 
-		window.clear();
+		window.clear(sf::Color(3, 144, 252));
 
 		ball.Update(dt);
-		ball.Draw(window);
-
 		paddle.Update(dt);
-		paddle.Draw(window);
+		bot.Update(dt, ball);
 
-		handleBall(paddle);
+		window.draw(line);
+
+		ball.Draw(window);
+		paddle.Draw(window);
+		bot.Draw(window);
+
+		handleBall(paddle, bot);
 		handlePaddle();
 
 		window.display();
