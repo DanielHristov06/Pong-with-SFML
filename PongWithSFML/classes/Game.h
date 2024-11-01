@@ -2,12 +2,14 @@
 
 #include "SFML/Graphics.hpp"
 #include "Ball.h"
+#include "Paddle.h"
 
-class Game
-{
+class Game {
 private:
 	const int mWidth;
 	const int mHeight;
+
+	float bounceTimer;
 
 public:
 	sf::RenderWindow window;
@@ -18,10 +20,12 @@ public:
 	sf::Time dt;
 
 	Ball ball;
+	Paddle paddle;
 
 	Game();
 
-	void handleBall();
+	void handleBall(Paddle& paddle);
+	void handlePaddle();
 
 	void Run();
 };

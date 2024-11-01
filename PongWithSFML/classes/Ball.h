@@ -1,11 +1,10 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 
-class Ball
-{
+class Ball {
 private:
 	sf::Vector2f mPosition;
-	sf::RectangleShape mBall;
+	sf::CircleShape mBall;
 
 	const float mSpeed = 500.f;
 	float mDirectionX = 1.f;
@@ -16,7 +15,7 @@ public:
 
 	sf::FloatRect getPosition();
 
-	sf::RectangleShape getShape();
+	sf::CircleShape getShape();
 
 	void bounceSides();
 
@@ -27,4 +26,6 @@ public:
 	void hitBall();
 
 	void Update(sf::Time dt);
+
+	void Draw(sf::RenderWindow& window);
 };
