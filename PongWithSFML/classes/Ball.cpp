@@ -1,9 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(float startX, float startY){
-	mPosition.x = startX;
-	mPosition.y = startY;
-
+Ball::Ball(float startX, float startY) : mPosition(sf::Vector2f(startX, startY)){
 	mBall.setSize(sf::Vector2f(10.f, 10.f));
 	mBall.setPosition(mPosition);
 }
@@ -24,9 +21,9 @@ void Ball::bounceTop(){
 	mDirectionY *= -1;
 }
 
-void Ball::missBottom(){
+void Ball::miss(){
 	mPosition.x = 1280 / 2;
-	mPosition.y = 0;
+	mPosition.y = 720 / 2;
 }
 
 void Ball::hitBall(){

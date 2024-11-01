@@ -21,5 +21,7 @@ public:
 
 	Game();
 
+	void handleBall();
+
 	void Run();
 };

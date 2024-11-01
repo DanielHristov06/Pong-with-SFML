@@ -22,7 +22,7 @@ public:
 
 	void bounceTop();
 
-	void missBottom();
+	void miss();
 
 	void hitBall();
 
