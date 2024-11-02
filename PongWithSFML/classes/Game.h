@@ -4,11 +4,14 @@
 #include "Ball.h"
 #include "Paddle.h"
 #include "CpuPaddle.h"
+#include <sstream>
 
 class Game {
 private:
 	const int mWidth;
 	const int mHeight;
+
+	int score1;
 
 	float bounceTimer;
 
@@ -23,6 +26,10 @@ public:
 	Ball ball;
 	Paddle paddle;
 	CpuPaddle bot;
+
+	sf::Font font;
+	sf::Text hud;
+	std::stringstream ss;
 
 	sf::RectangleShape line;
 

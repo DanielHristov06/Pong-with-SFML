@@ -3,6 +3,7 @@
 Game::Game()
 	: mWidth(1280),
 	mHeight(720),
+	score1(0),
 	window(sf::VideoMode(mWidth, mHeight), "Pong", sf::Style::Default),
 	ball(mWidth / 2, mHeight / 2),
 	paddle(32, mHeight / 2),
@@ -12,6 +13,15 @@ Game::Game()
 {
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
+
+	font.loadFromFile("../fonts/Valorant Font.ttf");
+	hud.setFont(font);
+	hud.setFillColor(sf::Color::Blue);
+	hud.setPosition(15, 0);
+	hud.setCharacterSize(20);
+
+	ss << "Score: " << score1;
+	hud.setString(ss.str());
 
 	line.setPosition(sf::Vector2f(mWidth / 2 - 1, 0.f));
 }
@@ -68,6 +78,8 @@ void Game::Run(){
 		ball.Draw(window);
 		paddle.Draw(window);
 		bot.Draw(window);
+
+		window.draw(hud);
 
 		handleBall(paddle, bot);
 		handlePaddle();
