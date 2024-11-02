@@ -12,6 +12,7 @@ private:
 	const int mHeight;
 
 	int score1;
+	int score2;
 
 	float bounceTimer;
 
@@ -30,6 +31,9 @@ public:
 	sf::Font font;
 	sf::Text hud;
 	std::stringstream ss;
+
+	sf::Text hud2;
+	std::stringstream ss2;
 
 	sf::RectangleShape line;
 

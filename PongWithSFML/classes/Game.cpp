@@ -4,6 +4,7 @@ Game::Game()
 	: mWidth(1280),
 	mHeight(720),
 	score1(0),
+	score2(0),
 	window(sf::VideoMode(mWidth, mHeight), "Pong", sf::Style::Default),
 	ball(mWidth / 2, mHeight / 2),
 	paddle(32, mHeight / 2),
@@ -14,14 +15,22 @@ Game::Game()
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 
-	font.loadFromFile("../fonts/Valorant Font.ttf");
+	font.loadFromFile("Fonts/Valorant Font.ttf");
 	hud.setFont(font);
 	hud.setFillColor(sf::Color::Blue);
-	hud.setPosition(15, 0);
+	hud.setPosition((float)mWidth / 4, 0);
 	hud.setCharacterSize(20);
+
+	hud2.setFont(font);
+	hud2.setFillColor(sf::Color::Blue);
+	hud2.setPosition((float)mWidth / 2 + (float)mWidth / 4, 0);
+	hud2.setCharacterSize(20);
 
 	ss << "Score: " << score1;
 	hud.setString(ss.str());
+
+	ss2 << "Score: " << score2;
+	hud2.setString(ss2.str());
 
 	line.setPosition(sf::Vector2f(mWidth / 2 - 1, 0.f));
 }
@@ -34,8 +43,22 @@ void Game::handleBall(Paddle& paddle, CpuPaddle& bot){
 		}
 	}
 
-	if (ball.getPosition().left < 0 || ball.getPosition().left + ball.getPosition().width > mWidth) {
+	if (ball.getPosition().left < 0) {
 		ball.miss();
+		score2++;
+		ss2.str("");
+		ss2.clear();
+		ss2 << "Score: " << score2;
+		hud2.setString(ss2.str());
+	}
+
+	if (ball.getPosition().left + ball.getPosition().width > mWidth) {
+		ball.miss();
+		score1++;
+		ss.str("");
+		ss.clear();
+		ss << "Score: " << score1;
+		hud.setString(ss.str());
 	}
 
 	if (ball.getPosition().top < 0 || ball.getPosition().top + ball.getPosition().height > 720 && bounceTimer < 0) {
@@ -80,6 +103,7 @@ void Game::Run(){
 		bot.Draw(window);
 
 		window.draw(hud);
+		window.draw(hud2);
 
 		handleBall(paddle, bot);
 		handlePaddle();
