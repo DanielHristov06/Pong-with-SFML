@@ -14,8 +14,6 @@ private:
 	int score1;
 	int score2;
 
-	float bounceTimer;
-
 public:
 	sf::RenderWindow window;
 

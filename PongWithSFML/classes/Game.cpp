@@ -9,8 +9,7 @@ Game::Game()
 	ball(mWidth / 2, mHeight / 2),
 	paddle(32, mHeight / 2),
 	bot(mWidth - 32, mHeight / 2),
-	line(sf::Vector2f(2.f, (float)mHeight)),
-	bounceTimer(0.10f)
+	line(sf::Vector2f(2.f, (float)mHeight))
 {
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
@@ -37,10 +36,7 @@ Game::Game()
 
 void Game::handleBall(Paddle& paddle, CpuPaddle& bot){
 	if (ball.getPosition().intersects(paddle.getPosition()) || ball.getPosition().intersects(bot.getPosition())) {
-		if (bounceTimer < 0) {
-			ball.bounceSides();
-			bounceTimer = 0.10f;
-		}
+		ball.bounceSides();
 	}
 
 	if (ball.getPosition().left < 0) {
@@ -61,9 +57,8 @@ void Game::handleBall(Paddle& paddle, CpuPaddle& bot){
 		hud.setString(ss.str());
 	}
 
-	if (ball.getPosition().top < 0 || ball.getPosition().top + ball.getPosition().height > 720 && bounceTimer < 0) {
+	if (ball.getPosition().top < 0 || ball.getPosition().top + ball.getPosition().height > 720) {
 		ball.bounceTop();
-		bounceTimer = 0.10f;
 	}
 }
 
@@ -78,7 +73,6 @@ void Game::handlePaddle() {
 void Game::Run(){
 	while (window.isOpen()) {
 		dt = clock.restart();
-		bounceTimer -= dt.asSeconds();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			window.close();
