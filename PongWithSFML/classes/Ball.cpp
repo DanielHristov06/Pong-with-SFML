@@ -27,10 +27,6 @@ void Ball::miss(){
 	mPosition.y = 720 / 2;
 }
 
-void Ball::hitBall(){
-
-}
-
 void Ball::Update(sf::Time dt){
 	mPosition.x -= mDirectionX * mSpeed * dt.asSeconds();
 	mPosition.y += mDirectionY * mSpeed * dt.asSeconds();

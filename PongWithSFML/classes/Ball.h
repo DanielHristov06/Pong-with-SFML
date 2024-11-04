@@ -23,8 +23,6 @@ public:
 
 	void miss();
 
-	void hitBall();
-
 	void Update(sf::Time dt);
 
 	void Draw(sf::RenderWindow& window);
