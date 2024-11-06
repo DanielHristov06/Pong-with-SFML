@@ -70,6 +70,28 @@ void Game::handlePaddle() {
 	else paddle.stopDown();
 }
 
+void Game::Draw() {
+	window.clear(sf::Color(3, 144, 252));
+
+	ball.Update(dt);
+	paddle.Update(dt);
+	bot.Update(dt, ball);
+
+	window.draw(line);
+
+	ball.Draw(window);
+	paddle.Draw(window);
+	bot.Draw(window);
+
+	window.draw(hud);
+	window.draw(hud2);
+
+	handleBall(paddle, bot);
+	handlePaddle();
+
+	window.display();
+}
+
 void Game::Run(){
 	while (window.isOpen()) {
 		dt = clock.restart();
@@ -84,24 +106,6 @@ void Game::Run(){
 			}
 		}
 
-		window.clear(sf::Color(3, 144, 252));
-
-		ball.Update(dt);
-		paddle.Update(dt);
-		bot.Update(dt, ball);
-
-		window.draw(line);
-
-		ball.Draw(window);
-		paddle.Draw(window);
-		bot.Draw(window);
-
-		window.draw(hud);
-		window.draw(hud2);
-
-		handleBall(paddle, bot);
-		handlePaddle();
-
-		window.display();
+		Draw();
 	}
 }
