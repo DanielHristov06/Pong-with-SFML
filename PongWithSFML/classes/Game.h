@@ -40,6 +40,8 @@ public:
 	void handleBall(Paddle& paddle, CpuPaddle& bot);
 	void handlePaddle();
 
+	void Update();
+
 	void Draw();
 
 	void Run();

@@ -70,12 +70,17 @@ void Game::handlePaddle() {
 	else paddle.stopDown();
 }
 
-void Game::Draw() {
-	window.clear(sf::Color(3, 144, 252));
-
+void Game::Update() {
 	ball.Update(dt);
 	paddle.Update(dt);
 	bot.Update(dt, ball);
+
+	handleBall(paddle, bot);
+	handlePaddle();
+}
+
+void Game::Draw() {
+	window.clear(sf::Color(3, 144, 252));
 
 	window.draw(line);
 
@@ -103,9 +108,7 @@ void Game::Run(){
 			}
 		}
 
-		handleBall(paddle, bot);
-		handlePaddle();
-
+		Update();
 		Draw();
 	}
 }
