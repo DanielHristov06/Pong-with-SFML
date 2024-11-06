@@ -86,9 +86,6 @@ void Game::Draw() {
 	window.draw(hud);
 	window.draw(hud2);
 
-	handleBall(paddle, bot);
-	handlePaddle();
-
 	window.display();
 }
 
@@ -105,6 +102,9 @@ void Game::Run(){
 				window.close();
 			}
 		}
+
+		handleBall(paddle, bot);
+		handlePaddle();
 
 		Draw();
 	}
