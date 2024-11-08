@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 Game::Game()
 	: mWidth(1280),
@@ -14,7 +15,10 @@ Game::Game()
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 
-	font.loadFromFile("Fonts/Valorant Font.ttf");
+	if (!font.loadFromFile("Fonts/Valorant Font.ttf")) {
+		std::cerr << "Error loading font" << std::endl;
+	}
+
 	hud.setFont(font);
 	hud.setFillColor(sf::Color::Blue);
 	hud.setPosition((float)mWidth / 4, 0);

@@ -2,7 +2,7 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
-#include "../classes/Game.h"
+#include "Game.h"
 
 int main() {
 	Game game;
